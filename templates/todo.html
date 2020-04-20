@@ -1,0 +1,42 @@
+{{template "header"}}
+    <title>待办事项</title>
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{template "navbar" .}}
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <h1>待办事项清单</h1>
+            <form class="form-horizontal">
+                <div class="input-group">
+                    <input id="name" class="form-control" type="text" placeholder="请输入待办事项">
+                    <span class="input-group-btn"><div class="addbtn"></div></span>
+                </div>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>待办事项</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="todolist">
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </body>
+    {{template "ini_script"}}
+    <script type="text/javascript" src="/static/js/todolist.js"></script>
+    <script>
+        window.onload=getAll;
+    </script>
+</html>

@@ -1,0 +1,361 @@
+a{
+    text-decoration: none;
+}
+
+body {
+    background-color: #f0f5e5;
+    font-family: "Microsoft YaHei";
+}
+
+.my_table{
+    background-color: #e9d7df;
+}
+
+.article-text{
+    background-color: #fffef8;
+    height: 500px;
+    border-width: 1px;
+    padding-left: 10px;
+    word-wrap: break-word;
+}
+
+.article-text .markdown{
+    /*用于设置markdown相关格式*/
+}
+
+.reply-text{
+    background-color: #fffef9;
+    border-width: 1px;
+}
+.reply-text h3{
+    margin-top:1px;
+    margin-left: 5px;
+}
+
+.reply-content{
+    margin-left: 20px;
+}
+
+
+.addbtn {
+    width:25px;
+    height:25px;
+    border-radius:25px ;
+    background:#409eff;
+    display:block;
+    position: relative;
+    margin-left:5px;
+}
+
+.addbtn:before, .addbtn::after {
+    content:"";
+    height:17.5px;
+    width:3.75px;
+    border-radius: 6.25px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:3.75px;/*40-6=34*/
+    left:11px;/*make the two rects in the middle of the cycle */
+
+}
+.addbtn::before {
+    height:17.5px;
+    width:4px;
+    transform: rotate(-90deg);
+    -ms-transform:rotate(-90deg);
+    position: absolute;
+    top:3.25px;/*40-18=12  */
+    left:10px;
+}
+
+.addbtn:hover {
+    background-color:#407fff ;
+}
+
+.correct {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:green;
+    display:block;
+    position: relative;
+    margin:0;
+}
+
+.correct:before, .correct::after {
+    content:"";
+    height:14px;
+    width:3px;
+    border-radius: 5px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:3px;/*40-6=34*/
+    left:10px;/*make the two rects in the middle of the cycle */
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+}
+.correct::before {
+    height:7px;
+    transform: rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    position: absolute;
+    top:9px;/*40-18=12  */
+    left:4px;
+}
+
+.incorrect {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:red;
+    display:block;
+    position: relative;
+    margin:0;
+}
+
+.incorrect:before, .incorrect::after {
+    content:"";
+    height:14px;
+    width:3px;
+    border-radius: 5px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:3px;/*40-6=34*/
+    left:8px;/*make the two rects in the middle of the cycle */
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+}
+.incorrect::before {
+    height:14px;
+    transform: rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    position: absolute;
+    top:3px;/*40-18=12  */
+    left:8px;
+}
+.correct:hover{
+    background-color:#00d95a;
+}
+
+.incorrect:hover{
+    background-color: #d54e53;
+}
+
+.done {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:orange;
+    display:block;
+    position: relative;
+    margin:0;
+}
+
+.done:before, .done::after {
+    content:"";
+    height:10px;
+    width:10px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:5px;/*40-6=34*/
+    left:5px;/*make the two rects in the middle of the cycle */
+
+}
+
+.done:hover{
+    background-color: coral;
+}
+
+.note {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:blue;
+    display:block;
+    position: relative;
+    margin:0;
+
+}
+
+.note:before, .note::after {
+    content:"";
+    height:12px;
+    width:4px;
+    border-radius: 10px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:2px;/*40-6=34*/
+    left:8px;
+
+}
+.note::before {
+    height:4px;
+    border-radius:50%;
+    position: absolute;
+    top:15px;/*40-18=12  */
+    left:8px;
+}
+
+.note:hover{
+    background-color: #00c4ff;
+}
+
+.album{
+    background-color: #f8f8f2;
+    margin-top: 15px;
+    width: 160px;
+    height: 180px;
+    border:#f0f5e5 solid 2px;
+    position:relative;
+    box-shadow: 0.3px 0.5px 0.1px 0.1px black;
+}
+
+.album:hover{
+    cursor:pointer;
+}
+.frontpage{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left:20px;
+    top:25px;
+    margin:0;
+    border:#f0f5e5 solid 1px;
+}
+
+.albumName{
+    width: 120px;
+    font-family: "Microsoft YaHei";
+    font-size: 20px;
+    position: relative;
+    left:20px;
+    top:150px;
+    text-align: center;
+    margin:0;
+}
+
+.albumDel {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:red;
+    display:none;
+    position: absolute;
+    margin:0;
+    left:135px;
+    top:2px;
+    z-index:300;
+}
+
+.albumDel:before, .albumDel::after {
+    content:"";
+    height:4px;
+    width:14px;
+    border-radius: 10px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:8px;
+    left:3px;
+}
+
+.albumDel:hover{
+    cursor:pointer;
+    background-color: #d54e53;
+}
+
+.photodiv{
+    margin-top: 15px;
+    width: 160px;
+    height: 180px;
+    position:relative;
+}
+
+.photo{
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top:5px;
+    margin:0;
+    z-index:5;
+}
+
+.photoProcess{
+    width: 160px;
+    font-family: "Microsoft YaHei";
+    font-size: 15px;
+    position: relative;
+    top:168px;
+    text-align: center;
+    margin:0;
+}
+
+.pic{
+    position:absolute;
+    z-index:10;
+    opacity:0;
+    filter:alpha(opacity=0);
+    width: 160px;
+    height: 160px;
+    top:5px;
+}
+
+.photo:hover{
+    cursor: pointer;
+}
+.pic:hover{
+    cursor: pointer;
+}
+
+.backmask{
+    z-index: 100;
+    background-color: black;
+    opacity:0.6;
+    position: absolute;
+    top:0;
+    left:0;
+    margin: 0;
+    display: none;
+}
+
+.bigpic{
+    z-index: 200;
+    position: absolute;
+    top:0;
+    left:0;
+    margin: 0;
+    display: none;
+}
+
+.picBigClose {
+    width:20px;
+    height:20px;
+    border-radius:20px ;
+    background:red;
+    display:none;
+    position: absolute;
+    margin:0;
+    z-index:1300;
+}
+
+.picBigClose:before, .picBigClose::after {
+    content:"";
+    height:4px;
+    width:14px;
+    border-radius: 10px;
+    display:block;
+    background:white;
+    position: absolute;
+    top:8px;
+    left:3px;
+}
+
+.picBigClose:hover{
+    cursor:pointer;
+    background-color: #d54e53;
+}

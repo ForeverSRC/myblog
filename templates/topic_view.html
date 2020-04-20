@@ -1,0 +1,116 @@
+{{template "header"}}
+        <link rel="stylesheet" href="/static/editor.md/css/editormd.min.css" type="text/css"/>
+        <title>{{.Topic.Title}}</title>
+    </head>
+
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{template "navbar" .}}
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container" style="height: 60%">
+            {{$labs:=.Topic.Labels|decodeLabelsIterable}}
+            {{$isLgin:=.IsLogin}}
+            {{with .Topic}}
+                <h2>{{.Title}}</h2>
+                <div>
+                    <h5>
+                        {{range $labs}}
+                            <a href="/?label={{.}}">{{.}}</a>
+                        {{end}}
+                    </h5>
+                </div>
+                <div id="markdown-view">
+                    <textarea style="display:none;">{{.Content}}</textarea>
+                </div>
+                <div style="margin-top: 5px">
+                    {{if $isLgin}}
+                    <a href="/topic/modify?tid={{.ID}}" class="btn btn-default">修改文章</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{end}}
+                    <a href="/topic" class="btn btn-default">返回文章列表</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a id="download_pdf" class="btn btn-default">下载pdf版本</a>
+                </div>
+            {{end}}
+        </div>
+
+        <div class="container">
+            <div><h3>评论</h3></div>
+            <div class="reply-text">
+                {{$isLgin:=.IsLogin}}
+                    {{range .Replies}}
+                        <h3>{{.Name}} <small>{{.Created}} {{if $isLgin}}<a href="/reply/delete?rid={{.ID}}&tid={{.Tid}}">删除</a>{{end}}</small></h3>
+                        <div class="reply-content">{{.Content|unescaped}}</div>
+                    <br>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div><h3>添加评论</h3></div>
+            <form action="/reply/add" method="post">
+                <input type="hidden" name="tid" value="{{.Topic.ID}}">
+                <div class="form-group">
+                    <label><h4>显示昵称：</h4></label>
+                    <input type="text" class="form-control" name="nickname">
+                </div>
+                <div class="form-group">
+                    <label><h4>内容：</h4></label>
+                    <div id="editormd">
+                        <textarea style="display: none" name="content" cols="30" rows="85" class="form-control"></textarea>
+                    </div>
+                </div>
+                <button  class="btn btn-default">提交</button>
+            </form>
+        </div>
+        {{template "ini_script"}}
+        <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/static/editor.md/editormd.min.js"></script>
+        <script src="/static/editor.md/lib/marked.min.js"></script>
+        <script src="/static/editor.md/lib/prettify.min.js"></script>
+        <script src="/static/js/topic_download_pdf.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var editor = editormd("editormd", {
+                    placeholder:'支持Markdown编辑，左边编写，右边预览',
+                    width  : "100%",
+                    height : 640,
+                    //启动本地图片上传功能
+                    imageUpload: true,
+                    imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "/topic/imgup", //文件提交请求路径
+                    path   : "/static/editor.md/lib/",
+                    theme: "monokai",//工具栏主题
+                    previewTheme: "default",//预览主题
+                    editorTheme: "pastel-on-dark",//编辑主题
+                    saveHTMLToTextarea: true,
+                    emoji: false,
+                    taskList: true,
+                    tocm: true,         // Using [TOCM]
+                    tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+                    flowChart: true,             // 开启流程图支持，默认关闭
+                    sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                    toolbarIcons : function() {  //自定义工具栏，后面有详细介绍
+                        return ["undo","redo","|","bold","del","italic","quote","|","h1","h2","h3","h4","h5","h6","|","list-ul","list-ol","hr","|","link","image","code","preformatted-text","code-block","table","datetime","emoji","html-entities","pagebreak","|","goto-line","watch","preview","clear","search","|","help","info"];
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                var testView;
+                testView = editormd.markdownToHTML("markdown-view", {
+                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    emoji           : true,
+                    taskList        : true,
+                    tex             : true,  // 默认不解析
+                    //flowChart       : true,  // 默认不解析
+                    //sequenceDiagram : true,  // 默认不解析
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+{{template "header"}}
+        <title>登录 - 我的博客</title>
+    </head>
+    <body>
+        <div class="container" style="width: 500px">
+            <div class="input-group">
+                <form method="post" action="/login">
+                    <div>
+                        <label>用户名</label>
+                        <input id="uname" type="text" class="form-control" name="uname" placeholder="Username">
+                    </div>
+
+                    <div>
+                        <label>密码</label>
+                        <input id="pwd" type="password" class="form-control" name="pwd" placeholder="Password">
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="autologin">自动登录
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default" onclick="return checkInput();">登录</button>
+                    <button type="submit" class="btn btn-default" onclick="return backtoHome();">返回</button>
+                </form>
+                <script type="text/javascript">
+                    function checkInput() {
+                        var uname=document.getElementById("uname");
+                        if(uname.value.length==0) {
+                            alert("账号不能为空");
+                            return false
+                        }
+                        var pwd=document.getElementById("pwd");
+                        if(pwd.value.length==0){
+                            alert("密码不能为空");
+                            return false
+                        }
+                        return true
+                    }
+
+                    function backtoHome() {
+                        window.location.href="/";
+                        return false
+                    }
+                </script>
+            </div>
+        </div>
+        {{template "ini_script"}}
+    </body>
+</html>

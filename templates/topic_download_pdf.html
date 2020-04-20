@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" href="/static/css/mystyle.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/editor.md/css/editormd.min.css" type="text/css"/>
+        <title>{{.Topic.Title}}</title>
+    </head>
+    <body>
+        <div class="container" style="height: 60%">
+            {{$labs:=.Topic.Labels|decodeLabelsIterable}}
+            {{with .Topic}}
+                <h2>{{.Title}}</h2>
+                <div>
+                    <h5>
+                        {{range $labs}}
+                            <a href="/?label={{.}}">{{.}}</a>
+                        {{end}}
+                    </h5>
+                </div>
+                <div id="markdown-view">
+                    <textarea style="display:none;">{{.Content}}</textarea>
+                </div>
+            {{end}}
+        </div>
+        {{template "ini_script"}}
+        <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/static/editor.md/editormd.min.js"></script>
+        <script src="/static/editor.md/lib/marked.min.js"></script>
+        <script src="/static/editor.md/lib/prettify.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var testView;
+                testView = editormd.markdownToHTML("markdown-view", {
+                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    emoji           : true,
+                    taskList        : true,
+                    tex             : true,  // 默认不解析
+                    flowChart       : true,  // 默认不解析
+                    sequenceDiagram : true,  // 默认不解析
+                });
+            });
+        </script>
+    </body>
+</html>

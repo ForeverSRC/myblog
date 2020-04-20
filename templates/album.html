@@ -1,0 +1,45 @@
+{{template "header"}}
+        <title>相册 - 我的博客</title>
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{template "navbar" .}}
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="container">
+            {{if .IsLogin}}
+            <div id="addAlbum" class="album">
+                <a>
+                    <img src="/static/img/addAlbum.jpg" class="frontpage">
+                </a>
+                <div class="albumName">
+                    <a  style="text-decoration: none">添加相册</a>
+                </div>
+            </div>
+            <div id="delAlbum" class="album" style="left:190px;top:-195px;">
+                <img src="/static/img/delAlbum.png" class="frontpage">
+                <div class="albumName">
+                    <a  style="text-decoration: none">删除相册</a>
+                </div>
+            </div>
+            {{end}}
+            <div id="totalAlbum">
+            </div>
+        </div>
+        {{template "ini_script"}}
+        <script type="text/javascript" src="/static/js/album.js"></script>
+        <script>
+            window.onload=getAllAlbums
+        </script>
+        {{if .IsLogin}}
+            <script>
+                document.getElementById("addAlbum").addEventListener("click",addAlbum);
+                document.getElementById("delAlbum").addEventListener("click",delAlbumSwitch);
+            </script>
+        {{end}}
+    </body>
+</html>

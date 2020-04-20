@@ -1,0 +1,60 @@
+{{template "header"}}
+        <link rel="stylesheet" href="/static/editor.md/css/editormd.min.css" type="text/css"/>
+        <title>首页 - 我的博客</title>
+    </head>
+
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{template "navbar" .}}
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="col-md-5">
+
+                <div id="markdown-view" style="margin-top: 15px;height: 450px">
+                    <textarea style="display:none;">##记录代码与生活的博客
+###开发目的
+* 技术文档
+* 日常随记
+* 存储云盘
+
+###开发工具
+* 编程语言：Golang
+* Web后端框架：Gin
+* 前端框架：bootstrap
+* markdown：Editor.md+blackfriday
+* 数据库：MySQL
+* ORM：GORM
+                    </textarea>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <img src="/static/img/science.jpg" style="width: 550px;height: 450px;margin-top: 15px">
+                <h4 class="science" style="text-align: right;width: 550px;">——揭示这个世界底层逻辑的公式</h4>
+            </div>
+        </div>
+
+        {{template "ini_script"}}
+        <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/static/editor.md/editormd.min.js"></script>
+        <script src="/static/editor.md/lib/marked.min.js"></script>
+        <script src="/static/editor.md/lib/prettify.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var testView;
+                testView = editormd.markdownToHTML("markdown-view", {
+                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    emoji           : true,
+                    taskList        : true,
+                    tex             : true,  // 默认不解析
+                    flowChart       : true,  // 默认不解析
+                    sequenceDiagram : true,  // 默认不解析
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+{{template "header"}}
+        <title>相册</title>
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top" >
+            <div class="container">
+                {{template "navbar" .}}
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container" style="z-index: -10">
+            {{if .IsLogin}}
+            <div  class="photodiv">
+                    <input type="file" name="file" id="file" class="pic" accept=".jpg,.jpeg,.png">
+                    <img src="/static/img/addAlbum.jpg" class="photo">
+                <div class="photoProcess">
+
+                    <a id="addPhoto" style="text-decoration: none">上传图片</a>
+                </div>
+            </div>
+            <div id="delPhoto" class="photodiv" style="left:180px;top:-195px;">
+                <img src="/static/img/delAlbum.png" class="photo">
+                <div class="photoProcess">
+                    <a  style="text-decoration: none">删除图片</a>
+                </div>
+            </div>
+            {{end}}
+            <div id="returnAlbum" class="photodiv" style="{{if .IsLogin}}left:360px;top:-390px;{{end}}">
+                <img src="/static/img/return.png" class="photo">
+                <div class="photoProcess">
+                    <a  style="text-decoration: none">返回相册</a>
+                </div>
+            </div>
+            <div id="totalPhoto">
+            </div>
+        </div>
+        <div id="back" class="backmask">
+        </div>
+        <div id="showpic" class="bigpic">
+            <div class="picBigClose" id="bigPicClose"></div>
+            <img id="showBig">
+        </div>
+        {{template "ini_script"}}
+        <script type="text/javascript" src="/static/js/photo.js"></script>
+        <script>
+            window.onload=getAllPhotos
+        </script>
+        {{if .IsLogin}}
+            <script>
+                document.getElementById("delPhoto").addEventListener("click",delPhotoSwitch);
+            </script>
+        {{end}}
+    </body>
+</html>
